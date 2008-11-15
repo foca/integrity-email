@@ -6,6 +6,10 @@ module Integrity
   class Notifier
     class Email < Notifier::Base
       attr_reader :to, :from
+      
+      def self.to_haml
+        File.read File.dirname(__FILE__) / "config.haml"
+      end
 
       def initialize(build, config={})
         @to     = config.delete("to")
