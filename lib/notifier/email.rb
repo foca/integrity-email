@@ -46,7 +46,8 @@ module Integrity
             :port => @config["port"],
             :user => @config["user"],
             :pass => @config["pass"],
-            :auth => @config["auth"]
+            :auth => @config["auth"],
+            :domain => @config["domain"]
           }
         end
     end

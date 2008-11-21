@@ -25,3 +25,7 @@
 %p.normal
   %label{ :for => "email_notifier_auth" } Auth type
   %input.text#email_notifier_auth{ :name => "notifiers[Email][auth]", :value => (config["auth"] || "plain"), :type => "text" }
+
+%p.normal
+  %label{ :for => "email_notifier_domain" } Domain
+  %input.text#email_notifier_domain{ :name => "notifiers[Email][domain]", :value => config["domain"], :type => "text" }

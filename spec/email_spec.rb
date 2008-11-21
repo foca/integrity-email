@@ -101,6 +101,16 @@ describe Integrity::Notifier::Email do
         the_form(:config => { 'auth' => 'login' }).should have_textfield("email_notifier_auth").with_value("login")
       end
     end
+
+    describe "with the field for the smtp domain" do
+      it "should have the proper name, id and label" do
+        the_form.should have_textfield("email_notifier_domain").named("notifiers[Email][domain]").with_label("Domain").with_value(nil)
+      end
+      
+      it "should use the config's 'domain' value if available" do
+        the_form(:config => { 'domain' => 'example.com' }).should have_textfield("email_notifier_domain").with_value("example.com")
+      end
+    end
   end
   
   describe "building the email" do
@@ -112,7 +122,8 @@ describe Integrity::Notifier::Email do
         "port" => "25", 
         "user" => "blah", 
         "pass" => "blah", 
-        "auth" => "plain"
+        "auth" => "plain",
+        "domain" => 'example.com'
       }
     end
     
