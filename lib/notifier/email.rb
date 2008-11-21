@@ -44,7 +44,7 @@ module Integrity
           Sinatra::Mailer.config = {
             :host => @config["host"],
             :port => @config["port"],
-            :user => @config["user"],
+            :user => (@config["user"].empty? ? nil : @config["user"]),
             :pass => @config["pass"],
             :auth => @config["auth"],
             :domain => @config["domain"]

@@ -134,6 +134,11 @@ describe Integrity::Notifier::Email do
       Sinatra::Mailer::Email.stub!(:new).and_return(@email)
     end
     
+    it "should set user to nil when none provided" do
+      Integrity::Notifier::Email.new(mock_build, notifier_config.merge!('user' => ''))
+      Sinatra::Mailer.config['user'].should be_nil
+    end
+
     it "should be sent to the address specified in the options" do
       @mailer.to.should == "destination@example.com"
     end
