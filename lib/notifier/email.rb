@@ -40,12 +40,16 @@ module Integrity
       private
 
         def configure_mailer
+          user = @config["user"]
+          pass = @config["pass"]
+          
+          user = pass = nil if user.empty? && pass.empty?
           Sinatra::Mailer.delivery_method = "net_smtp"
           Sinatra::Mailer.config = {
             :host => @config["host"],
             :port => @config["port"],
-            :user => (@config["user"].empty? ? nil : @config["user"]),
-            :pass => @config["pass"],
+            :user => user,
+            :pass => pass,
             :auth => @config["auth"],
             :domain => @config["domain"]
           }
